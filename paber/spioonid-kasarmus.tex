@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}	% for use with pdflatex
+\usepackage[utf8]{inputenc} % for use with pdflatex
+\usepackage[estonian]{babel}
+
+% paketid
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{abstract}
+
+% eemaldab lühikokkuvõtte pealkirja
+\addto{\captionsestonian}{\renewcommand{\abstractname}{}}
+\renewcommand{\absnamepos}{empty}
+
+\newtheorem{theorem}{Teoreem}
+\newtheorem{corollary}{Järeldus}[theorem]
+\newtheorem{lemma}[theorem]{Lause}
+\theoremstyle{definition}
+\newtheorem{definition}{Definitsioon}
+
+% statistiloised operaatorid
+\DeclareMathOperator*{\MEAN}{\mathbf{E}}
+\DeclareMathOperator*{\VARIANCE}{\mathbf{D}}
+\newcommand{\mean}[1]{\MEAN\left[#1\right]}
+\newcommand{\variance}[1]{\VARIANCE\left[#1\right]}
+\newcommand{\prob}[1]{\Pr\left[#1\right]}
+
+% viitesüsteem
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
+
+\begin{document}
+
+\title{Spioonid}
+\author{Reamees}
+\date{} % et maketitle kuupäeva ei lisaks
+
+\maketitle
+
+\begin{abstract}
+    \textbf{Lühikokkuvõte.} \\
+    \textbf{Märksõnad:}
+\end{abstract}
+
+\section{Sissejuhatus}
+
+\section{Taust ja definitsiooonid}
+
+Toome välja mõned definitsioonid koos täiendava taustainfoga, mis töös esinevad.
+
+\begin{definition}[\cite{juhuslikud-protsessid}]
+    \textbf{Juhuslikuks protsessiks} nimetatakse juhuslike suuruste peret $\{ X(t) , t \in T \}$, mille iga liige $X(t)$ on juhuslik suurus tavalises mõistes. Eeldame, et kõik juhuslikud suurused $X(t)$ on määratud ühel ja samal tõenäosusruumil $(\Omega, \mathcal{F}, \Pr)$.
+\end{definition}
+
+Parameeter $t$ on sageli reaalarvuline muutuja, mida tõlgendatakse ajana. Mõnikord suhtutakse parameetrisse kui kohta ruumis, mida võib väljendada näiteks vektoriga. Selles töös tähistame parameetriga $t$ aega.
+
+\begin{definition}[\cite{juhuslikud-protsessid}]
+    Hulka $T$ nimetatakse juhusliku protsessi \textbf{indekshulgaks}.
+\end{definition}
+
+Kui indekshulk $T$ on loenduv nimetatakse protsessi diskreetse ajaga protsessiks. Selles töös mõõdame aega sündmuste toimumiste vahel, seega on mõistlik indekshulka suhtuda kui poolsirgesse $T= [0, \infty]$, siis on tegu pideva ajaga protsessiga.
+
+Matemaatiliste mudelite loomisel päriseluliste olukordade kirjeldamiseks tuleb alati teha lihtsutsavaid eeldusi. Üritades olukorda täpselt modelleerida võib arvutustesse ära uppuda. See-eest tehes liiga palju lihtsustusi ei pruugi mudel enam vastata tegelikkusele. Üks sageli tehtud eeldus on, et kindad juhuslikud suurused on eksponentjaotusega. Nimetatud eeldus on asjakohane, sest eksponentjaotusega seotud arvutused on järgitavad ning tulemused on sageli head lähendid tegelikkusele. \cite[lk 291]{introduction-to-probability-models}
+
+\begin{definition}[\cite{tõenäosusteooria-algkursus}]
+    Õeldakse, et juhuslik suurus $X$ on \textbf{eksponentjaotusega} intensiivsusega $\lambda , \lambda > 0$ ja tähistatakse $X \sim \mathcal{E}(\lambda)$, kui tema tihedus on
+    \begin{equation*}
+        f_X(t) = \lambda e^{- \lambda t} , t \geq 0 \enspace .
+    \end{equation*}
+\end{definition}
+
+Eksponentjaotusega juhusliku suuruse jaotusfunktsioon on $F_X(t) = 1 - e^{- \lambda t}$.
+
+Omadus, mis eksponentjaotust tesitest pidevatest jaotustest eristab on selle "mälutus". Kui mingi eseme eluiga on eksponentjaotusega, on kümme tundi (või mingi muu aja) kasutuses olnud ese tõenäosuslikult sama hea kui uus ese tema järelejäänud eluea mõttes \cite[lk 291]{introduction-to-probability-models}. Näiteks on kümme tundi põlenud lambi läbipõlemise tõenäosus viie tunni pärast sama, mis uhiuue lambi läbipõlemise tõenäosus sama aja pärast. Formaalselt võib asjaolu sõnastada järgneva lausega.
+
+\begin{lemma}
+    Olgu $X \sim \mathcal{E}(\lambda)$, iga $t, s \geq 0$ korral $\prob{X \geq t + s \mid X \geq s} = \prob{X \geq t}$.
+\end{lemma}
+
+\begin{proof}
+    \begin{equation*}
+        \prob{X \geq t + s \mid X \geq s} = \frac{\prob{X \geq t + s}}{\prob{X \geq s}} = \frac{e^{- \lambda (t + s)}}{e^{- \lambda s}} = e^{- \lambda t} = \prob{X \geq t} \enspace .
+    \end{equation*}
+\end{proof}
+
+\begin{definition}[\cite{juhuslikud-protsessid}]
+    Juhuslikku protsessi $\{ N(t) , t \geq 0 \}$ nimetatakse \textbf{loendavaks protsessiks}, kui $N(t)$ on mingite sündmuste toimumiste koguarv ajavahemikus $[0, t]$.
+\end{definition}
+
+Üks olulisemaid loendavaid protsesse on Poissoni protsess.
+
+\begin{definition}[\cite{juhuslikud-protsessid}]
+    Loendavat protsessi $\{ N(t) , t \geq 0 \}$ nimetatakse \textbf{Poissoni protsessiks}, kui
+    \begin{enumerate}
+        \item $N(0) = 0$, 
+        \item iga $t_1 \leq t_2 \leq t_3 \leq t_4$ korral on juhuslikud suurused $N(t_4) - N(t_3)$ ja $N(t_2) - N(t_1)$ sõltumatud, ehk protsessi juurdekasvud lõikumatutes ajavahemikes on sõltumatud,
+        \item suvaliste $s, t \geq 0$ korral
+        \begin{equation*}
+            \prob{N(t + s) - N(s) = n} = \frac{(\lambda t)^n}{n!} e^{- \lambda t} , n = 0, 1, 2, 3, \dots \enspace ,
+        \end{equation*}
+        teisisõnu on sündmuste arv mistahes lõigul pikkusega $t$ Poissoni jaotusega juhuslik suurus keskväärtusega $\lambda t$.
+    \end{enumerate}
+\end{definition}
+
+Kolmandast tingimusest järledub, et $\mean{N(t)} = \mean{N(t)- N(0)} = \lambda t$. Suurust $\lambda$ nimetatakse protsessi \textbf{intensiivsuseks}.
+
+\begin{definition}[\cite{tõenäosusteooria-algkursus}]
+    Õeldakse, et juhuslik suurus $X$ on \textbf{Poissoni jaotusega} parameetriga $\lambda$ ja tähistatakse $X \sim \mathcal{P}(\lambda)$, kui $X$ võimalikud väärtused on $0, 1, 2, 3, \dots$ ning
+    \begin{equation*}
+        \prob{X = n} = \frac{\lambda^n}{n!} e^{- \lambda} \enspace .
+    \end{equation*}
+\end{definition}
+
+Tähtis omadus, mis seob omavahel Poissoni protsessi ning eespool välja toodud eksponentjaotuse, on sündmuste toimumise vahelise aja jaotus. Olgu $\{ N(t) , t \geq 0 \}$ Poissoni protsess intensiivsusega $\lambda$, tähistame sündmuste toimumishetked $S_1 \leq S_2 \leq \dots$ ning ajavehemikud järjestike sündmuste vahel $T_1 = S_1 , T_2 = S_2 - S_1 , T_3 = S_3 - S_2 , \dots$.
+
+\begin{theorem}[{\cite[lk 38]{juhuslikud-protsessid}}]
+    Tühemikud $T_1 , T_2 , \dots$ on sõltumatud sama jaotusega juhuslikud suurused, $T_i \sim \mathcal{E}(\lambda)$.
+\end{theorem}
+
+\section{Andmed}
+Andmed on kogutud salaja, ilma et ohvrid sellest teaksid. See on eetiline.
+
+\subsection{Söömine ja vaba aeg}
+Spioonide esinemissagedust mõjutab luureoperatsiooni korraldaja täis kõht. Kui ressursse on rohkem on võimalik ka rohkem spioone välja saata. Andmpunktidelt selgub, et peale sööki esinevad spioonid sagedamini. Sellest tulenevalt võib andmetest saadaparema ülevaate vaadates andmeid söögikordade kaupa, mitte päevade kaupa.
+
+Lisaks spioonide esinemissagedusele tuleb märkida, et pahatahtliku luureoperatsiooni korraldaja saadetud spioonide kohta saab infot vaid siis, kui saadetud spioonid avastatakse või kinni püütakse. Enamus kirja pandud spioonidest avastati vabal- või reservajal, kui rühm paiknes mugavalt kasarmu magalas.
+
+\section{Stohhastiline mudel}
+
+\subsection{Valimikeskmine}
+
+\subsection{Suurima tõepära meetod}
+
+\section{Kokkuvõte}
+
+% bibliograafia
+\addcontentsline{toc}{section}{Kasutatud allikad}
+\printbibliography[title={Kasutatud allikad}]
+
+\end{document}
