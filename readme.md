@@ -6,5 +6,5 @@ Valminud mudel koosneb Z-ist mittehonogeensest Poissoni portsessid, millest kõi
 ![mudel z5 k20](joonised/mudel_z5_k20.png)
 
 ## Päriselulised andmed
-Andmed on kogutd 2023 juulist kuni septembrini, keset viiekümne liikmelise õpperühma igapäevasteid tegevusi.
+Andmed on kogutd 2023 juulist kuni septembrini, keset viiekümne liikmelise õpperühma igapäevaseid tegevusi.
 ![päevakaupa punktiprotessid](joonised/punktiprotsessid.png)
