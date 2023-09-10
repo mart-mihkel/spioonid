@@ -1,5 +1,5 @@
 # Spioonid
-Sõduri baaskursuse aegsete spioonide esinemise modellerimine mittehomogeense Poissoni liitprotsessina
+Sõduri baaskursuse aegsete spioonide esinemise modelleerimine mittehomogeense Poissoni liitprotsessina
 
 ## Mudel
 Valminud mudel koosneb Z-ist mittehomogeensest Poissoni portsessist, millest kõigi intensiivsusfunktsioonid on K kaalutud normaaljaotuse summad.
