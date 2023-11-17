@@ -1,0 +1,18 @@
+[project]
+name = "spioonid"
+version = "1.0.1"
+description = "Probablistic non-homogenous Poisson process model"
+license = "MIT"
+authors = "Mart-Mihkel Aun <mart.mihkel.aun@gmail.com>"
+readme = "readme.md"
+repository = "https://github.com/mart-mihkel/spioonid"
+keywords = ["statistics", "probabilty", "Poisson process"]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "polars",
+    "jupyter",
+    "plotnine",
+    "matplotlib",
+]
