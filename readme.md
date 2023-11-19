@@ -3,7 +3,7 @@ Sõduri baaskursuse aegsete spioonide esinemise modelleerimine mittehomogeense P
 
 ## Mudel
 Põhineb [Goulding et al](http://www.cs.nott.ac.uk/~pszgss/goulding2016event_preprint.pdf). Valminud mudel koosneb Z-ist mittehomogeensest Poissoni portsessist, millest kõigi intensiivsusfunktsioonid on K kaalutud normaaljaotuse summad.
-![mudel z5 k20](joonised/mudel_z5_k20.png)
+![intensiivsused](joonised/z-5_k-50.png)
 
 ## Andmed
 Mudel põhineb andmetel, mis on kogutud 2023 juulist kuni septembrini viiekümne liikmelise õpperühma igapäevaste tegevuste käigus.
