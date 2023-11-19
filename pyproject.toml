@@ -6,7 +6,7 @@ license = "MIT"
 authors = "Mart-Mihkel Aun <mart.mihkel.aun@gmail.com>"
 readme = "readme.md"
 repository = "https://github.com/mart-mihkel/spioonid"
-keywords = ["statistics", "probabilty", "Poisson process"]
+keywords = ["statistics", "probabilty", "poisson-process"]
 requires-python = ">=3.10"
 dependencies = [
     "numpy",
